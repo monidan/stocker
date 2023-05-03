@@ -4,12 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev:ui": "cd ui && vite dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vite": "^4.3.4"
+    "@vitejs/plugin-vue": "^4.2.1",
+    "vite": "^4.3.4",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "pinia": "^2.0.35",
+    "vue-router": "^4.1.6"
   }
 }
