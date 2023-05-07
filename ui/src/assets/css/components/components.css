@@ -1,0 +1,31 @@
+@import './_hovers.css';
+
+.container {
+    max-width: calc(100% - 12.5%);
+    margin: 0 auto;
+
+    @screen md {
+        max-width: 580px;
+    }
+
+    @screen lg {
+        max-width: 1180px;
+    }
+}
+
+.block-shadow-layer {
+    @apply 
+        before:absolute 
+        before:content-['']
+
+        before:overflow-hidden
+        
+        before:-z-10
+        before:inset-0
+        before:rounded-full;
+}
+
+.block-shadow-layer::before {
+    background-color: rgba(0, 0, 0, 0.15);
+    filter: blur(34px);
+}

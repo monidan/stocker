@@ -1,0 +1,7 @@
+input {
+    @apply 
+        outline-none
+        transition-all duration-300
+
+        focus:shadow-light-still;
+}
