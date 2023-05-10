@@ -1,4 +1,5 @@
-const { encryptPassword } = require('../utils/password-utils');
+const { encryptPassword, comparePasswords } = require('../utils/password-utils');
+const { retrieveDataFromAuthorizationHeader } = require('../utils/auth-utils');
 const { db } = require('../database/index');
 
 const NO_USERNAME_PROVIDED = require('../errors/user');
@@ -19,6 +20,18 @@ class User {
     }
 
     /**
+     * Compare plain and encrypted passwords using bcrypt
+     * @param {string} encryptedPassword 
+     * @param {string} plainPassword 
+     * @returns {boolean}
+     */
+    async comparePasswords(encryptedPassword, plainPassword) {
+        try {
+            return await comparePasswords(encryptedPassword, plainPassword);
+        } catch (e) { throw new Error(e) };
+    }
+
+    /**
      * Adds user document to firebase collection
      * @param {string} password 
      * @param {string} salt 
@@ -30,6 +43,28 @@ class User {
         try {
             return await db.collection('users')
                 .add({ username: this._username, password, hash: salt });
+        } catch (e) { throw new Error(e) }
+    }
+
+    /**
+     * 
+     * @param {string} encodedHeaderData 
+     * @returns {object};
+     */
+    static retrieveUserData(encodedHeaderData) {
+        return retrieveDataFromAuthorizationHeader(encodedHeaderData, '.');
+    }
+
+    /**
+     * Get user from cloud firestore by username
+     * @returns {object}
+     */
+    async getUserFromDatabase() {
+        try {
+            const users = await db.collection('users')
+                .where('username', '==', this._username).get()
+
+            return users.docs[0].data();
         } catch (e) { throw new Error(e) }
     }
 

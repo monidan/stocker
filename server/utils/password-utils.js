@@ -18,6 +18,17 @@ async function encryptPassword(password, rounds) {
     };
 }
 
+/**
+ * Compares two passwords using bcrypt
+ * @param {string} hashedPassword 
+ * @param {string} password 
+ * @returns {boolean}
+ */
+async function comparePasswords(hashedPassword, password) {
+    return await bcrypt.compare(password, hashedPassword);
+}
+
 module.exports = {
     encryptPassword,
+    comparePasswords
 }

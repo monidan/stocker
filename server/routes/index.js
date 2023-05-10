@@ -1,6 +1,16 @@
-const { register } = require('../services/auth');
+const { register, auth } = require('../services/auth');
 
-function auth(fastify, options, done) {
+function authRoute(fastify, options, done) {
+    fastify.route({
+        method: 'GET',
+        url: '/auth',
+        handler: auth
+    })
+
+    done();
+} 
+
+function registerRoute(fastify, options, done) {
     fastify.route({
         method: 'POST',
         url: '/sign-up',
@@ -11,5 +21,6 @@ function auth(fastify, options, done) {
 }
 
 module.exports = [
-    auth,
+    authRoute,
+    registerRoute,
 ]
