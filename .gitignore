@@ -1,1 +1,4 @@
 /node_modules/
+
+# Secured config files
+.config/firestore-cloud-key.json
