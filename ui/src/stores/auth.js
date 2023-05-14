@@ -5,12 +5,16 @@ import _axios from '@/shared/plugins/axios';
 import { encodeToBase64 } from '@/shared/utils/crypto';
 
 export const useAuthStore = defineStore('auth', () => {
-  const isAuthenticated = ref(false);
+  const isAuthenticated = ref(true);
   const token = ref('');
   const username = ref('');
 
   function setUsername(inputUsername) {
     username.value = inputUsername;
+  }
+
+  function authenticateApp() {
+    isAuthenticated.value = true;
   }
 
   async function registerUser(username, password) {
@@ -43,6 +47,8 @@ export const useAuthStore = defineStore('auth', () => {
 
     registerUser,
     logInUser,
+
     setUsername,
+    authenticateApp
   }
 })

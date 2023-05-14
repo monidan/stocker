@@ -1,7 +1,27 @@
-input {
+input[type] {
     @apply 
         outline-none
         transition-all duration-300
 
-        focus:shadow-light-still;
+        focus:shadow-light-still
+
+        w-full 
+        
+        rounded-[120px] 
+        
+        bg-blue-200 
+        border-4 
+        border-white 
+        
+        md:px-10 
+        md:py-12 
+        
+        md:text-4xl 
+        
+        placeholder:text-white 
+        placeholder:font-sans
+
+        focus:bg-blue-100  
+        
+        text-white;
 }

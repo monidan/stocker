@@ -3,9 +3,14 @@ import { RouterView } from 'vue-router'
 
 import Notification from '@/components/Notification.vue';
 
+import Header from '@/layout/Header.vue';
+import Footer from '@/layout/Footer.vue';
+
 import { useNotificationStore } from '@/stores/notification';
+import { useAuthStore } from '@/stores/auth';
 
 const notificationStore = useNotificationStore();
+const authStore = useAuthStore();
 </script>
 
 <template>
@@ -19,9 +24,19 @@ const notificationStore = useNotificationStore();
         {{ notificationStore.notificationText }}
       </Notification>
     </aside>
-    
-    <main class="h-full">
-      <RouterView />
-    </main>
+
+    <div class="h-full flex flex-col">
+      <Header 
+        v-show="authStore.isAuthenticated"
+      />
+  
+      <main class="grow"> 
+        <RouterView />
+      </main>
+  
+      <Footer 
+        v-show="authStore.isAuthenticated"
+      />
+    </div>
   </div>
 </template>

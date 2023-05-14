@@ -39,6 +39,7 @@ async function submitForm() {
       await authStore.logInUser(login.value, password.value)
         .then(() => {
           authStore.setUsername(login.value);
+          authStore.authenticateApp();
           router.push({ name: 'main' });
         })
         .catch(err => notificationStore.pushNotification('error', 'Auth error!'))

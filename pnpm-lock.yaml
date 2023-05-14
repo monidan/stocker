@@ -10,6 +10,7 @@ specifiers:
   nodemon: ^2.0.22
   pinia: ^2.0.35
   tailwindcss: ^3.3.2
+  typed.js: ^2.0.16
   vee-validate: ^4.9.3
   vite: ^4.3.4
   vue: ^3.2.47
@@ -32,6 +33,7 @@ devDependencies:
   fastify: 4.17.0
   nodemon: 2.0.22
   pinia: 2.0.35_vue@3.2.47
+  typed.js: 2.0.16
   vue-router: 4.1.6_vue@3.2.47
 
 packages:
@@ -2847,6 +2849,10 @@ packages:
     peerDependencies:
       typescript: '>=4.7.0'
     dev: false
+
+  /typed.js/2.0.16:
+    resolution: {integrity: sha512-IBB52GlJiTUOnomwdVVf7lWgC6gScn8md+26zTHj5oJWA+4pSuclHE76rbGI2hnyO+NT+QXdIUHbfjAY5nEtcw==}
+    dev: true
 
   /uc.micro/1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
