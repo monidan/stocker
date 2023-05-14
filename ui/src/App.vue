@@ -3,9 +3,9 @@ import { RouterView } from 'vue-router'
 
 import Notification from '@/components/Notification.vue';
 
-import { useNoficationStore } from '@/stores/notification';
+import { useNotificationStore } from '@/stores/notification';
 
-const notificationStore = useNoficationStore();
+const notificationStore = useNotificationStore();
 </script>
 
 <template>

@@ -53,7 +53,7 @@ const isOutlinedClasses = (classes) => props.outlined
                 <span v-if="!loading">
                     <slot />
                 </span>
-                <span class="w-16 h-16 block border-4 border-dark-700/60 border-t-brand-700 rounded-full animate-spin" v-if="loading"></span>
+                <span class="w-12 h-12 block border-4 border-dark-700/60 border-t-brand-700 rounded-full animate-spin" v-if="loading"></span>
             </button>
         </template>
     
@@ -61,7 +61,10 @@ const isOutlinedClasses = (classes) => props.outlined
             <router-link
                 :to="link"
                 class="block text-center border-4 rounded-[120px] md:py-8 md:text-4xl font-bold w-full transition-all duration-300"
-                :class="[colorClasses, hoverClasses].join(' ')"
+                :class="[
+                    colorClasses, 
+                    hoverClasses,
+                ].join(' ')"
             >
                 <slot />
             </router-link>

@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from "pinia";
 
-export const useNoficationStore = defineStore('notification', () => {
+export const useNotificationStore = defineStore('notification', () => {
     const isNotificationActive = ref(false);
     const notificationText = ref('');
     const notificationType = ref('');

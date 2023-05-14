@@ -5,7 +5,7 @@ import { useForm } from 'vee-validate';
 import { string, ref as yupRef, object } from 'yup';
 
 import { useAuthStore } from '@/stores/auth';
-import { useNoficationStore } from '@/stores/notification';
+import { useNotificationStore } from '@/stores/notification';
 
 import BaseInput from '@/components/BaseComponents/BaseInput.vue';
 import BaseButton from '@/components/BaseComponents/BaseButton.vue';
@@ -20,7 +20,7 @@ const form = ref({
 const isLoading = ref(false);
 
 const authStore = useAuthStore();
-const notificationStore = useNoficationStore();
+const notificationStore = useNotificationStore();
 
 const {
   meta,
@@ -45,7 +45,7 @@ async function register() {
       router.push({ name: 'auth' });
       resetForm();
     })
-    .catch(err => notificationStore.pushNotification('error', 'Auth error!'))
+    .catch(err => notificationStore.pushNotification('error', 'Sign up error!'))
     .finally(() => isLoading.value = false);
 }
 </script>
