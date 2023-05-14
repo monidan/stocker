@@ -14,13 +14,14 @@ const props = defineProps({
         default: '',
     },
     link: {
-        type: String || Object,
+        type: [String, Object],
         default: ''
     },
-    disabled: Boolean
+    disabled: Boolean,
+    loading: Boolean,
 });
 
-defineEmits('click');
+const emits = defineEmits(['click']);
 
 const colorClasses = computed(() => {
     switch(props.color) {
@@ -35,26 +36,35 @@ const isOutlinedClasses = (classes) => props.outlined
 </script>
 
 <template>
-        
-    <template v-if="!Object.keys(link).length">
-        <button
-            class="border-4 rounded-[120px] md:py-8 md:text-4xl font-bold w-full transition-all duration-300"
-            :class="[colorClasses, hoverClasses].join(' ')"
-         
-            :disabled="disabled"
-            
-            @click="$emit('click')"
-        >
-            <slot />
-        </button>
-    </template>
-
-    <router-link
-        v-if="Object.keys(link).length"
-        :to="link"
-        class="block text-center border-4 rounded-[120px] md:py-8 md:text-4xl font-bold w-full transition-all duration-300"
-        :class="[colorClasses, hoverClasses].join(' ')"
-    >
-        <slot />
-    </router-link>
+    <div class="w-full">
+        <template v-if="!Object.keys(link).length">
+            <button
+                class="flex justify-center border-4 rounded-[120px] md:py-8 md:text-4xl font-bold w-full transition-all duration-300"
+                :class="[
+                    colorClasses, 
+                    hoverClasses,
+                    loading || disabled ? '!bg-gray !text-blue-700/60 !border-gray' : ''
+                ].join(' ')"
+             
+                :disabled="disabled || loading"
+                
+                @click="$emit('click')"
+            >
+                <span v-if="!loading">
+                    <slot />
+                </span>
+                <span class="w-16 h-16 block border-4 border-dark-700/60 border-t-brand-700 rounded-full animate-spin" v-if="loading"></span>
+            </button>
+        </template>
+    
+        <template v-if="Object.keys(link).length">
+            <router-link
+                :to="link"
+                class="block text-center border-4 rounded-[120px] md:py-8 md:text-4xl font-bold w-full transition-all duration-300"
+                :class="[colorClasses, hoverClasses].join(' ')"
+            >
+                <slot />
+            </router-link>
+        </template>
+    </div>
 </template>

@@ -1,7 +1,10 @@
+const colors = require('tailwindcss/colors');
+
 export default {
     content: ['./src/**/*.{html,js,vue}'],
     theme: {
       colors: {
+        ...colors,
         'brand': {
           '100': '#E6F5D7',
           '200': '#DAF5BF',
