@@ -6,6 +6,8 @@
   "scripts": {
     "dev:ui": "cd ui && vite dev",
     "dev:server": "cd server && nodemon server.js",
+    "dev:ml": "cd prediction-container && docker build -t prediction-image . && docker run -p 8000:5000 prediction-image",
+    "start:api": "pnpm dev:ml & pnpm dev:server",
     "dev": "pnpm dev:ui & pnpm dev:server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.1",
+    "chart.js": "^4.3.0",
     "fastify": "^4.17.0",
     "nodemon": "^2.0.22",
     "pinia": "^2.0.35",
