@@ -2,9 +2,16 @@
 import { Transition, ref, onMounted } from 'vue';
 import Typed from 'typed.js';
 
-const stockName = ref('');
-const typingText = ref(null);
+defineProps({
+    modelValue: {
+        type: String,
+        default: ''
+    }
+})
 
+defineEmits(['update:modelValue', 'find'])
+
+const typingText = ref(null);
 const isInputActive = ref(false);
 
 onMounted(() => {
@@ -24,7 +31,9 @@ onMounted(() => {
             class="w-full"
             type="text"
 
-            v-model="stockName"
+            :value="modelValue"
+            @input="$emit('update:modelValue', $event.target.value)"
+            @keydown.enter="$emit('find')"
 
             @focus="isInputActive = true"
             @blur="isInputActive = false"
@@ -32,7 +41,7 @@ onMounted(() => {
 
         <Transition name="fade-out">
             <div 
-                v-show="!isInputActive && !stockName.length"
+                v-show="!isInputActive && !modelValue.length"
                 class="absolute text-white md:text-4xl left-12 flex transition-all duration-300"
             >
                 <p ref="typingText"></p>
@@ -41,8 +50,9 @@ onMounted(() => {
 
         <Transition name="fade-in">
             <button 
+                v-show="modelValue.length"
                 class="absolute right-8 rounded-full bg-brand-200 border-4 border-brand-700 uppercase font-sans transition-all duration-300 md:text-4xl md:px-4 md:py-2"
-                v-show="stockName.length"
+                @click="$emit('find')"
             >
                 Find
             </button>

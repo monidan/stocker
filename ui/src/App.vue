@@ -14,7 +14,7 @@ const authStore = useAuthStore();
 </script>
 
 <template>
-  <div class="relative bg-dark-gradient h-screen z-10 before:absolute before:content-[''] before:bg-dark-gradient before:bg-blend-color-dodge before:bottom-0 before:top-1/2 before:inset-x-0 before:-z-[5]">
+  <div class="relative h-full z-10">
     <aside class="container">
       <Notification 
         :isOpen="notificationStore.isNotificationActive"
@@ -27,10 +27,10 @@ const authStore = useAuthStore();
 
     <div class="h-full flex flex-col">
       <Header 
-        v-show="authStore.isAuthenticated"
+        v-show="authStore.isAuthenticated && $route.name !== 'profile'"
       />
   
-      <main class="grow"> 
+      <main class="min-h-[0px] grow shrink-0"> 
         <RouterView />
       </main>
   
