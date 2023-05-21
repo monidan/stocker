@@ -1,20 +1,22 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { defineStore } from 'pinia'
 
 import _axios from '@/shared/plugins/axios';
 import { encodeToBase64 } from '@/shared/utils/crypto';
 
 export const useAuthStore = defineStore('auth', () => {
-  const isAuthenticated = ref(true);
+  const isLoggedIn = ref(false);
   const token = ref('');
   const username = ref('');
+
+  const isAuthenticated = computed(() => isLoggedIn);
 
   function setUsername(inputUsername) {
     username.value = inputUsername;
   }
 
   function authenticateApp() {
-    isAuthenticated.value = true;
+    isLoggedIn.value = true;
   }
 
   async function registerUser(username, password) {
@@ -40,6 +42,12 @@ export const useAuthStore = defineStore('auth', () => {
     })
   }
 
+  function logOut() {
+    isLoggedIn.value = false;
+    username.value = '';
+    token.value = '';
+  }
+
   return { 
     isAuthenticated,
     token,
@@ -49,6 +57,7 @@ export const useAuthStore = defineStore('auth', () => {
     logInUser,
 
     setUsername,
-    authenticateApp
+    authenticateApp,
+    logOut
   }
 })

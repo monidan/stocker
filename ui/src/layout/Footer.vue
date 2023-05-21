@@ -1,3 +1,18 @@
+<script setup> 
+import { useRouter } from 'vue-router';
+
+import { useAuthStore } from '@/stores/auth';
+
+const authStore = useAuthStore();
+
+const router = useRouter();
+
+function logOut() {
+    authStore.logOut();
+    router.push({ name: 'home' });
+}
+</script>
+
 <template>
     <footer>
         <div class="container flex items-center justify-between md:py-12">
@@ -5,6 +20,7 @@
                 <p class="text-white">
                     This web-site was created for education purposes. Do not take any suggestion here as a financial advice.
                 </p>
+                <button class="text-white underline font-bold" @click="logOut">Log out</button>
             </div>
 
             <div class="text-right flex flex-col items-end">

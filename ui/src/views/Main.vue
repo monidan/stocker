@@ -38,7 +38,10 @@ function findStockPrediction() {
             labels.value = Object.keys(historyResponse.data.data[historyDataKey]).reverse();
             predictedPrice.value = parseFloat(predictionResponse.data.data.price);
         })
-        .catch(err => notificationStore.pushNotification('error', 'Prediction issue.'))
+        .catch(err => {
+            notificationStore.pushNotification('error', 'Prediction issue.');
+            isSearched.value = false;
+        })
         .finally(() => isLoading.value = false);
 }
 </script>

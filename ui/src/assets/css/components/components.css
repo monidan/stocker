@@ -1,4 +1,5 @@
 @import './_hovers.css';
+@import './_scrolls.css';
 
 .container {
     max-width: calc(100% - 12.5%);

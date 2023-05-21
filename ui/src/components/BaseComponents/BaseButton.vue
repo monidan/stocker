@@ -5,7 +5,6 @@ const props = defineProps({
     color: {
         value: (v) => ['green', 'white'].includes(v),
         type: String,
-        required: true,
         default: 'green',
     },
     outlined: Boolean,

@@ -31,7 +31,7 @@ class Stock {
         const portfolio = portfolioDoc.docs[0].data();
 
         return {
-            stocks: portfolio.stocks,
+            stocks: JSON.parse(portfolio.stocks),
         };
     }
 
