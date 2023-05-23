@@ -43,7 +43,7 @@ async function submitForm() {
           router.push({ name: 'main' });
         })
         .catch(err => notificationStore.pushNotification('error', 'Auth error!'))
-        .finally(() => isLoading.value = true);
+        .finally(() => isLoading.value = false);
     }
 }
 </script>

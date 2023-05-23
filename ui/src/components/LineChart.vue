@@ -10,9 +10,7 @@ const chart = ref(null);
 const context = ref(null);
 const gradientBg = ref(null);
 
-function isProfitable() {
-    return transformedDataset.value[0] - transformedDataset.value[transformedDataset.length - 1] > 0
-}
+const isProfitable = computed(() => transformedDataset.value[0] - transformedDataset.value[transformedDataset.value.length - 1] < 0);
 
 const props = defineProps({
     labels: {
@@ -39,8 +37,8 @@ const transformedDataset = computed(() => {
     })
 });
 const transformedLabels = computed(() => [...isRef(props.dataset) ? props.labels.value : props.labels, 'Predicted Price']);
-const borderColor = computed(() => isProfitable ? PROFIT_COLOR(1) : LOSS_COLOR(1));
-const bgColor = computed(() => isProfitable ? PROFIT_COLOR(0.35) : LOSS_COLOR(0.35));
+const borderColor = computed(() => isProfitable.value ? PROFIT_COLOR(1) : LOSS_COLOR(1));
+const bgColor = computed(() => isProfitable.value ? PROFIT_COLOR(0.35) : LOSS_COLOR(0.35));
 
 onMounted(() => {
     context.value = lineChartEl.value.getContext('2d');
