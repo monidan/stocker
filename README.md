@@ -16,13 +16,13 @@ Assets management web-application, where you can track a portfolio of your stock
 
 ### Back-end
 - fastify@4
-- vite@4
 
 ### Database
 - firebase database
 
 ### Infrastructure
 - Docker
+- vite@4
 
 ## Running
 
